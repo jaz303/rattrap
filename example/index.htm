@@ -1,0 +1,38 @@
+<html>
+  <head>
+    <title>rattrap</title>
+    <script>
+      var module = { exports: {} };
+      var exports = module.exports;
+    </script>
+    <script src='../index.js'></script>
+    <script>
+      function init() {
+
+        var rt = module.exports;
+
+        var trig = document.getElementById('trigger');
+
+        trig.addEventListener('mousedown', function(evt) {
+          evt.preventDefault();
+          console.log('capture start');
+
+          rt.startCapture({
+            cursor: 'crosshair',
+            mousemove: function(evt) {
+              console.log('capture mousemove', evt);
+            },
+            mouseup: function() {
+              console.log('capture stopped!');
+              rt.stopCapture();
+            }
+          })
+        });
+
+      }
+    </script>
+  </head>
+  <body onload='init();'>
+    <a href='#' id='trigger'>Click and drag &amp; watch console output</a>
+  </body>
+</html>

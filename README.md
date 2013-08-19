@@ -8,7 +8,11 @@ Browserify is recommended.
 
     $ npm install rattrap
 
+rattrap expects the `document` object to be globally accessible.
+
 ## Example
+
+See `example/index.htm`.
 
     var rt = require('rattrap');
 
@@ -30,3 +34,7 @@ Starts catpuring all mouse events and dispatches them to `handlers`, an object m
 #### `rattrap.stopCapture()`
 
 Stops mouse capture.
+
+## Browser Support
+
+Tested on Chrome 28 and Firefox 22.
