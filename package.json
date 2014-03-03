@@ -1,6 +1,6 @@
 {
   "name": "rattrap",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "Temporarily capture all mouse events",
   "main": "index.js",
   "scripts": {
