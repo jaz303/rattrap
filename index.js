@@ -3,11 +3,15 @@ var activeCaptures = [];
 function createOverlay(doc) {
     var overlay = doc.createElement('div');
     overlay.className = 'rattrap-overlay';
+    overlay.unselectable = 'on';
     overlay.style.position = 'fixed';
     overlay.style.top = 0;
     overlay.style.left = 0;
     overlay.style.width = '100%';
     overlay.style.height = '100%';
+    overlay.style.webkitUserSelect = 'none';
+    overlay.style.mozUserSelect = 'none';
+    overlay.style.msUserSelect = 'none';
     return overlay;
 }
 
