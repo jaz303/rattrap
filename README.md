@@ -14,26 +14,24 @@ rattrap expects the `document` object to be globally accessible.
 
 See `example/index.htm`.
 
-    var rt = require('rattrap');
+```javascript
+var rt = require('rattrap');
 
-    rt.startCapture({
-        mousemove: function(evt) {
-            console.log("captured mouse movement", evt);
-        },
-        mouseup: function() {
-            rt.stopCapture();
-        }
-    });
+vat stopCapture = rt.startCapture({
+    mousemove: function(evt) {
+        console.log("captured mouse movement", evt);
+    },
+    mouseup: function() {
+        stopCapture();
+    }
+});
+```
 
 ## API
 
-#### `rattrap.startCapture(handlers)`
+#### `rattrap.startCapture([document], handlers)`
 
-Starts catpuring all mouse events and dispatches them to `handlers`, an object mapping DOM event names such as `mousemove` and `mouseup` to event handlers. The special key `cursor` can also be used to display any CSS-supported cursor whilst capture is active.
-
-#### `rattrap.stopCapture()`
-
-Stops mouse capture.
+Starts catpuring all mouse events and dispatches them to `handlers`, an object mapping DOM event names such as `mousemove` and `mouseup` to event handlers. The special key `cursor` can also be used to display any CSS-supported cursor whilst capture is active. If omitted, `document` defaults to `window.document`. Returns a function that can be called to cancel the capture operation.
 
 ## Browser Support
 
