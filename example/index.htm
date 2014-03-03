@@ -17,14 +17,14 @@
           evt.preventDefault();
           console.log('capture start');
 
-          rt.startCapture({
+          var stop = rt.startCapture(document, {
             cursor: 'crosshair',
             mousemove: function(evt) {
               console.log('capture mousemove', evt);
             },
             mouseup: function() {
               console.log('capture stopped!');
-              rt.stopCapture();
+              stop();
             }
           })
         });
@@ -33,6 +33,6 @@
     </script>
   </head>
   <body onload='init();'>
-    <a href='#' id='trigger'>Click and drag &amp; watch console output</a>
+    <div id='trigger'>Click and drag &amp; watch console output</div>
   </body>
 </html>

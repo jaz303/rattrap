@@ -1,7 +1,7 @@
-var activeCapture = null;
+var activeCaptures = [];
 
-function createOverlay() {
-    var overlay = document.createElement('div');
+function createOverlay(doc) {
+    var overlay = doc.createElement('div');
     overlay.className = 'rattrap-overlay';
     overlay.style.position = 'fixed';
     overlay.style.top = 0;
@@ -19,29 +19,34 @@ function makeCaptureHandler(fn) {
     }
 }
 
-exports.startCapture = function(events) {
+exports.startCapture = function(doc, events) {
 
-    if (activeCapture) {
+    if (typeof events === 'undefined') {
+        events = doc;
+        doc = document;
+    }
+
+    if (activeCaptures.indexOf(doc) >= 0) {
         throw "cannot capture events, capture is already in progress";
     }
 
-    activeCapture = createOverlay();
-
-    document.body.appendChild(activeCapture);
+    var overlay = createOverlay(doc);
+    document.body.appendChild(overlay);
+    activeCaptures.push(overlay);
 
     for (var k in events) {
         if (k === 'cursor') {
-            activeCapture.style.cursor = events[k];
+            overlay.style.cursor = events[k];
         } else {
-            activeCapture.addEventListener(k, makeCaptureHandler(events[k]));
+            overlay.addEventListener(k, makeCaptureHandler(events[k]));
         }
     }
 
-}
-
-exports.stopCapture = function() {
-    if (activeCapture) {
-        document.body.removeChild(activeCapture);
-        activeCapture = null;
+    return function() {
+        doc.body.removeChild(overlay);
+        activeCaptures.splice(activeCaptures.indexOf(overlay), 1);
+        doc = null;
+        overlay = null;
     }
+
 }
