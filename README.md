@@ -15,7 +15,7 @@ See `example/index.htm`.
 ```javascript
 var rt = require('rattrap');
 
-vat stopCapture = rt.startCapture({
+var stopCapture = rt.startCapture({
     mousemove: function(evt) {
         console.log("captured mouse movement", evt);
     },
