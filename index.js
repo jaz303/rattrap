@@ -35,7 +35,7 @@ exports.startCapture = function(doc, events) {
     }
 
     var overlay = createOverlay(doc);
-    document.body.appendChild(overlay);
+    doc.body.appendChild(overlay);
     activeCaptures.push(overlay);
 
     for (var k in events) {
