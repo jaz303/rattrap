@@ -8,8 +8,6 @@ Browserify is recommended.
 
     $ npm install rattrap
 
-rattrap expects the `document` object to be globally accessible.
-
 ## Example
 
 See `example/index.htm`.
